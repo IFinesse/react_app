@@ -7,3 +7,8 @@
 .content img {
     max-width: 900px;
 }
+
+.item {
+  color: silver;
+  font-weight: 700;
+}
