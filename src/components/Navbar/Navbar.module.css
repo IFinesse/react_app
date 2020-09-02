@@ -5,4 +5,8 @@
 
 .item {
     color: white;
-  }
+}
+
+.active {
+    color: gold;
+}
