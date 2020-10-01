@@ -7,7 +7,10 @@ const state = {
             {id:2, message:"how are you????", likesCount:99},
             {id:3, message:"ok", likesCount:200},
         ],
+        postCurrentMessage: "666",
     },
+
+
     dialogsPage: {
         dialogs: [
             {id:1, name: "Ivan"},
@@ -24,16 +27,25 @@ const state = {
     }
 
 }
+window.state = state;
 
-export let addPost = (postMessage) => {
-    debugger;
+export let addPost = () => {
+    // debugger;
     let newPost = {
         id: 5,
-        message: postMessage,
+        message: state.profilePage.postCurrentMessage,
         likesCount: 0
     };
 
     state.profilePage.posts.push(newPost);
+    // state.profilePage.postCurrentMessage = '';
+    updatePostMessageChange('');
+    rerenderEntireTree(state);
+}
+
+export let updatePostMessageChange = (currentMessage) => {
+    // debugger;
+    state.profilePage.postCurrentMessage = currentMessage;
     rerenderEntireTree(state);
 }
 

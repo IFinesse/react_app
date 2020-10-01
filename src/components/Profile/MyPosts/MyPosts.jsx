@@ -1,16 +1,19 @@
 import React from 'react';
 import s from './MyPosts.module.css'
 import Post from './Post/Post';
+import { rerenderEntireTree } from '../../../render';
 
 const MyPosts = (props) => {
 
 
     let newPostElement = React.createRef();
+    // newPostElement.current.value = props.currentMessage;
 
-    const addPost = () => {
-        let text=newPostElement.current.value;
-        props.addPost(text);
-        newPostElement.current.value = null;
+    // const addPost = () => {
+    //     props.addPost();
+    // }
+    const onPostMessageChange = () => {
+        props.updatePostMessageChange(newPostElement.current.value);
     }
 
     const postsElements = props.posts.map(post => <Post message={post.message} likesCount={post.likesCount} />);
@@ -21,10 +24,10 @@ const MyPosts = (props) => {
             <h3>my posts</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement}></textarea>
+                    <textarea ref={newPostElement} onChange={onPostMessageChange} value={props.currentMessage} />
                 </div>
                 <div>
-                    <button onClick={addPost}>add post</button>
+                    <button onClick={props.addPost} >add post</button>
                 </div>
             </div>
             <div className={s.posts}>
