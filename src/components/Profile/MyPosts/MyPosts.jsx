@@ -1,17 +1,11 @@
 import React from 'react';
 import s from './MyPosts.module.css'
 import Post from './Post/Post';
-import { rerenderEntireTree } from '../../../render';
 
 const MyPosts = (props) => {
 
-
     let newPostElement = React.createRef();
-    // newPostElement.current.value = props.currentMessage;
 
-    // const addPost = () => {
-    //     props.addPost();
-    // }
     const onPostMessageChange = () => {
         props.updatePostMessageChange(newPostElement.current.value);
     }
