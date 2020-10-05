@@ -9,7 +9,7 @@ import News from './components/News/News';
 
 
 const App = (props) => {
-  debugger;
+  // debugger;
   return (
     
       <div className='app-wrapper'>
@@ -22,8 +22,8 @@ const App = (props) => {
           {/* <Route path='/dialogs' component={Dialogs} />
           <Route path='/news' component={News} /> */}
 
-          <Route path='/profile' render={() => <Profile state={props.state.profilePage} addPost={props.addPost} updatePostMessageChange={props.updatePostMessageChange}/>} />
-          <Route path='/dialogs' render={() => <Dialogs state={props.state.dialogsPage} />} />
+          <Route path='/profile' render={() => <Profile state={props.state.profilePage} dispatch={props.dispatch}/>} />
+          <Route path='/dialogs' render={() => <Dialogs state={props.state.dialogsPage} dispatch={props.dispatch}/>} />
           <Route path='/news' render={() => <News />} />
         </div>
 

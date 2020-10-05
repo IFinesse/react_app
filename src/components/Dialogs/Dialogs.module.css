@@ -19,3 +19,8 @@
 .message {
     /* padding: 10px; */
 }
+
+.addMessage button{
+    /* width: 20px; */
+    height: 20px;
+}
