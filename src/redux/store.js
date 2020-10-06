@@ -1,8 +1,5 @@
-
-const ADD_POST = "ADD_POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT";
-const ADD_MESSAGE = "ADD_MESSAGE";
-const UPDATE_MESSAGE_TEXT = "UPDATE_MESSAGE_TEXT";
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
 
 let store = {
     _state: {
@@ -28,7 +25,7 @@ let store = {
                 {id:2, text: "How are you"},
                 {id:3, text: "Ok"},
             ],
-            dialogCurrentMessage: "777",
+            dialogCurrentMessage: "",
         }
     },
 
@@ -39,64 +36,21 @@ let store = {
     getState() {
         return this._state;
     },
-
     
-    
-    addPost () {
-        // let that = this;
-        let newPost = {
-            id: 5,
-            message: this._state.profilePage.postCurrentMessage,
-            likesCount: 0
-        };
-    
-        this._state.profilePage.posts.push(newPost);
-        this.updateNewPostText('');
-        this._callSubscriber(this.getState());
-    },
-
-    updateNewPostText (currentMessage) {
-        this._state.profilePage.postCurrentMessage = currentMessage;
-        this._callSubscriber(this._state);
-    },
-
-    addMessage () {
-        let newMessage = {
-            id: 4,
-            text: this._state.dialogsPage.dialogCurrentMessage,
-        };
-        this._state.dialogsPage.messages.push(newMessage);
-        this._state.dialogsPage.dialogCurrentMessage = "";
-        this._callSubscriber(this.getState());
-    },
-
-    updateMessageText (text) {
-        this._state.dialogsPage.dialogCurrentMessage = text;
-        this._callSubscriber(this.getState());
-    },
 
     subscribe (observer) {
         this._callSubscriber = observer;
     },
 
     dispatch(action) {
-        switch (action.type) {
-            case ADD_POST: this.addPost();
-            break;
-            case UPDATE_NEW_POST_TEXT: this.updateNewPostText(action.currentText);
-            break;
-            case ADD_MESSAGE: this.addMessage();
-            break;
-            case UPDATE_MESSAGE_TEXT: this.updateMessageText(action.currentText)
-        }
+      
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+
+        this._callSubscriber(this.getState());
+
     },
 
 }
-
-export const addPostActionCreator = () => ({type: ADD_POST});
-export const updateNewPostTextActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, currentText: text});
-
-export const addMessageActionCreator = () => ({type: ADD_MESSAGE});
-export const updateMessageTextActionCreator = (text) => ({type: UPDATE_MESSAGE_TEXT, currentText: text});
 
 export default store;
