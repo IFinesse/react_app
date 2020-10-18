@@ -10,7 +10,7 @@ import {Provider} from 'react-redux';
 
 
 
-let rerenderEntireTree = (state) => {
+// let rerenderEntireTree = (state) => {
   ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter>
@@ -21,14 +21,14 @@ let rerenderEntireTree = (state) => {
     </React.StrictMode>,
     document.getElementById('root')
   );
-}
+// }
 
-store.subscribe(() => {
-  let state = store.getState();
-  rerenderEntireTree(state);
-});
+// store.subscribe(() => {
+//   let state = store.getState();
+//   rerenderEntireTree(state);
+// });
 
-rerenderEntireTree(store.getState());
+// rerenderEntireTree(store.getState());
 
 
 
