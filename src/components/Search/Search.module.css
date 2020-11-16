@@ -1,3 +1,11 @@
 .wrapper {
     /* display: flex; */
 }
+
+.pageNumber {
+    margin: 0px;
+}
+
+.currentPage {
+    font-weight: 700;
+}
